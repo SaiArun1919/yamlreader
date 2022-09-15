@@ -1,0 +1,10 @@
+id: '1'
+name: name1
+phoneNumbers:
+  - phoneNumber1
+  - phoneNumber2
+salary: 1000.0
+status: NEW
+age: 35
+
+

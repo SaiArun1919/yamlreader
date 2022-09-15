@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.esotericsoftware.yamlbeans/yamlbeans
+    implementation 'com.esotericsoftware.yamlbeans:yamlbeans:1.15'
+    testImplementation 'org.testng:testng:7.6.1'
+    implementation 'com.google.inject:guice:5.0.1'
+    implementation'org.projectlombok:lombok:1.18.24'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    testAnnotationProcessor'org.projectlombok:lombok:1.18.24'
+
+    implementation 'org.yaml:snakeyaml:1.32'
+
+}
+
+task runTests(type: Test) {
+    outputs.upToDateWhen { false }  //To avoid cache
+    useTestNG{
+        parallel = "methods"
+        threadCount Integer.parseInt(System.getProperty("sessions", "1"))
+        includeGroups System.getProperty("tags", "tests")
+        useDefaultListeners true
+        outputDirectory = file("$buildDir/" + System.getProperty('tags', 'NONE'))
+    }
+}
