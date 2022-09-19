@@ -31,5 +31,12 @@ public class YamlBeansFileReader {
         return read.get(value);
     }
 
+    public Object readAsNested(File file, Class main, String key, Class nested) throws FileNotFoundException, YamlException {
+        YamlReader yamlReader = new YamlReader(new FileReader(file));
+        yamlReader.getConfig().setPropertyElementType(main, key, nested);
+        Object read = yamlReader.read(main, nested);
+        return read;
+    }
+
 }
 
