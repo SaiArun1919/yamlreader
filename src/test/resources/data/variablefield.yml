@@ -1,0 +1,12 @@
+name: field3
+type: short
+length: 2
+comment: Error
+variableFields:
+  - !com.testvagrant.yamlreader.tests.models.VariableField
+    id: 1
+    name: nestedField 1
+    type: string
+    length: -1
+    comment:
+---
